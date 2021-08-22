@@ -14,7 +14,7 @@ BATCH_SIZE = 64
 GAMMA = 0.99          
 TAU = 0.001               
 LR = 0.003
-UPD_EVERY = 7
+UPDATE_EVERY = 7
 
 class Agent:
 
@@ -36,7 +36,7 @@ class Agent:
         self.memory.add(state, action, reward, next_state, done)
         
         # Learn every UPDATE_EVERY time steps.
-        self.t_step = (self.t_step + 1) % self.UPD_EVERY
+        self.t_step = (self.t_step + 1) % UPDATE_EVERY
 
         if self.t_step == 0:
             # If enough samples are available in memory, get random subset and learn
