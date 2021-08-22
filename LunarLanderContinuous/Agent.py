@@ -1,4 +1,4 @@
-from model import Actor, Critic
+from Models import Actor, Critic
 
 import numpy as np
 import random
