@@ -72,7 +72,7 @@ class Agent:
             # Compute Q targets for current states 
             Q_target = reward + (GAMMA * Q_target_next * (1 - done))
             # Get expected Q values from local model
-            Q_expected = self.qnetwork_local(state).gather(0, action)
+            Q_expected = self.qnetwork_local(state).gather(1, action)
 
             loss = F.mse_loss(Q_expected, Q_target)
             self.optimizer.zero_grad()
