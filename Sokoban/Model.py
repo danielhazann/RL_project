@@ -12,6 +12,6 @@ class Net(nn.Module):
 
     def forward(self, state):
         x = torch.flatten(state, 0)
-        x = F.elu(self.fc1(x))
-        x = F.elu(self.fc2(x))
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
         return self.fc3(x)
