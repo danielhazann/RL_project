@@ -11,10 +11,10 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 BUFFER_SIZE = int(1e5)                                     
 BATCH_SIZE = 64        
-GAMMA =              
-TAU =                    
-LR = 
-UPD_EVERY = 
+GAMMA = 0.99          
+TAU = 0.001               
+LR = 0.003
+UPD_EVERY = 7
 
 class Agent:
 
