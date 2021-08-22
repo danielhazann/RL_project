@@ -11,7 +11,7 @@ class Net(nn.Module):
         self.fc3 = nn.Linear(128, action_size)
 
     def forward(self, state):
-        x = torch.flatten(state, 0)
+        # x = torch.flatten(state, 0)
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         return self.fc3(x)
