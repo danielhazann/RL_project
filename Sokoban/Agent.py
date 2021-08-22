@@ -46,7 +46,7 @@ class Agent:
                 self.learn(experiences, GAMMA)
 
     def act(self, state, eps=0.):
-        state = torch.from_numpy(state.transpose((2, 0, 1))).float().unsqueeze(0).to(device)
+        state = torch.from_numpy(state).float().unsqueeze(0).to(device)
         self.qnetwork_local.eval()
 
         with torch.no_grad():
@@ -61,10 +61,10 @@ class Agent:
     def learn(self, experiences, gamma):
         
         for e in experiences:
-            state = torch.from_numpy(e.state.transpose((2, 0, 1))).float().unsqueeze(0).to(device)
+            state = torch.from_numpy(e.state).float().unsqueeze(0).to(device)
             action = torch.tensor(e.action).long().to(device)
             reward = torch.tensor(e.reward).float().to(device)
-            next_state = torch.from_numpy(e.next_state.transpose((2, 0, 1))).float().unsqueeze(0).to(device)
+            next_state = torch.from_numpy(e.next_state).float().unsqueeze(0).to(device)
             done = torch.tensor(e.done).float().to(device)
 
             # Get max predicted Q values (for next states) from target model
