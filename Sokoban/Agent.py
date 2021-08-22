@@ -13,7 +13,7 @@ BUFFER_SIZE = int(1e5)
 BATCH_SIZE = 64        
 GAMMA = 0.99          
 TAU = 0.001               
-LR = 0.003
+LR = 0.005
 UPDATE_EVERY = 7
 
 class Agent:
