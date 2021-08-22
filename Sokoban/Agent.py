@@ -25,7 +25,7 @@ class Agent:
         self.seed = seed
 
         self.qnetwork_local = Net(self.s_size, self.a_size, self.seed).to(device)
-        self.qnetwork_target = Net(self.n_states, self.n_actions ,self.seed ).to(device)
+        self.qnetwork_target = Net(self.s_size, self.a_size ,self.seed ).to(device)
         self.optimizer = optim.Adam(self.qnetwork_local.parameters(), lr=LR)
 
         self.memory = ReplayBuffer(BUFFER_SIZE, BATCH_SIZE, self.seed)
@@ -56,7 +56,7 @@ class Agent:
         if random.random() > eps:
             return np.argmax(action_values.cpu().data.numpy())
         else:
-            return random.choice(np.arange(self.n_actions))
+            return random.choice(np.arange(self.a_size))
 
     def learn(self, experiences, gamma):
         
