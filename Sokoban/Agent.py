@@ -22,7 +22,7 @@ class Agent:
 
         self.s_size = s_size 
         self.a_size = a_size
-        self.seed = torch.seed(seed)
+        self.seed = seed
 
         self.qnetwork_local = Net(self.s_size, self.a_size, self.seed).to(device)
         self.qnetwork_target = Net(self.n_states, self.n_actions ,self.seed ).to(device)
