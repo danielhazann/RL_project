@@ -11,10 +11,10 @@ import torch.optim as optim
 
 BUFFER_SIZE = int(1e6)
 BATCH_SIZE= 64
-GAMMA = 0.99            # discount factor
-TAU = 1e-3              # for soft update of target parameters
-LR_ACTOR = 0.001        # learning rate of the actor 
-LR_CRITIC = 0.003        # learning rate of the critic
+GAMMA = 0.99            
+TAU = 1e-3              
+LR_ACTOR = 0.001         
+LR_CRITIC = 0.003        
 WEIGHT_DECAY = 0.0001 
 
 class Agent():
