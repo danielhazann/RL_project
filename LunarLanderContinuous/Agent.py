@@ -19,18 +19,19 @@ WEIGHT_DECAY = 0.0001
 
 class Agent():
 
-    def __init__(self, s_size, a_size, seed):
+    def __init__(self, s_size, a_size, seed, device):
 
         self.s_size = s_size
         self.a_size = a_size
         self.seed = seed
+        self.device = device
 
-        self.actor_local = Actor(s_size, a_size, seed).to(device)
-        self.actor_target = Actor(s_size, a_size, seed).to(device)
+        self.actor_local = Actor(s_size, a_size, seed).to(self.device)
+        self.actor_target = Actor(s_size, a_size, seed).to(self.device)
         self.actor_optim = optim.Adam(self.actor_local.parameters(), lr=LR_ACTOR)
 
-        self.critic_local = Critic(s_size, a_size, seed).to(device)
-        self.critic_target = Critic(s_size, a_size, seed).to(device)
+        self.critic_local = Critic(s_size, a_size, seed).to(self.device)
+        self.critic_target = Critic(s_size, a_size, seed).to(self.device)
         self.critic_optim = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC)
 
         self.noise = OUNoise(a_size, seed)
@@ -44,7 +45,7 @@ class Agent():
             self.learn(experiences, GAMMA)
 
     def act(self, state, add_noise=False):
-        state = torch.from_numpy(state).float().to(device)
+        state = torch.from_numpy(state).float().to(self.device)
         self.actor_local.eval()
         with torch.no_grad():
             action = self.actor_local(state).cpu().data.numpy()
@@ -79,11 +80,11 @@ class Agent():
                 dones = np.vstack((dones, e.done))
 
         # print(states)
-        states = torch.from_numpy(states).float().to(device)
-        actions = torch.from_numpy(actions).float().to(device)
-        rewards = torch.from_numpy(rewards).float().to(device)
-        next_states = torch.from_numpy(next_states).float().to(device)			
-        dones = torch.from_numpy(dones).float().to(device)
+        states = torch.from_numpy(states).float().to(self.device)
+        actions = torch.from_numpy(actions).float().to(self.device)
+        rewards = torch.from_numpy(rewards).float().to(self.device)
+        next_states = torch.from_numpy(next_states).float().to(self.device)			
+        dones = torch.from_numpy(dones).float().to(self.device)
         
         # ---------------------------- update critic ---------------------------- #
         # Get predicted next-state actions and Q values from target models
