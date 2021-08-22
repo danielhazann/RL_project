@@ -70,7 +70,7 @@ class Agent:
             # Get max predicted Q values (for next states) from target model
             Q_target_next = self.qnetwork_target(next_state).detach().max(0)[0].unsqueeze(0)
             # Compute Q targets for current states 
-            Q_target = reward + (self.gamma * Q_target_next * (1 - done))
+            Q_target = reward + (GAMMA * Q_target_next * (1 - done))
             # Get expected Q values from local model
             Q_expected = self.qnetwork_local(state).gather(0, action)
 
