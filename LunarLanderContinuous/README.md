@@ -1,2 +1,2 @@
-# Sokoban
-Sokoban Reinforcement Learning Algorithm 
+# Lunar Lander Continuous v2 
+
